@@ -93,22 +93,23 @@
         document.getElementById("daily-mining-rate").textContent = `Current Mining Rate: ${miningRate} $ANG/day`;
 
         // Function to mine ANG
-        function mineANG() {
-            const now = new Date();
-            const lastMined = new Date(localStorage.getItem("lastMined") || 0);
+       function mineANG() {
+    const now = new Date();
+    const lastMined = new Date(localStorage.getItem("lastMined") || 0);
 
-            const oneDay = 24 * 60 * 60 * 1000;
-            if (now - lastMined >= oneDay) {
-                balance += miningRate;
-                localStorage.setItem("balance", balance);
-                localStorage.setItem("lastMined", now);
-                document.getElementById("balance").textContent = balance;
-                alert(`You mined ${miningRate} $ANG!`);
-            } else {
-                const timeLeft = Math.ceil((oneDay - (now - lastMined)) / (60 * 1000));
-                alert(`You can mine again in ${timeLeft} minutes.`);
-            }
-        }
+    const oneDay = 24 * 60 * 60 * 1000;
+    if (now - lastMined >= oneDay) {
+        balance += miningRate;
+        localStorage.setItem("balance", balance);
+        localStorage.setItem("lastMined", now);
+        document.getElementById("balance").textContent = balance;
+        alert(`You mined ${miningRate} $ANG!`);
+    } else {
+        const timeLeft = Math.ceil((oneDay - (now - lastMined)) / (60 * 60 * 1000)); // Convert to hours
+        alert(`You can mine again in ${timeLeft} hours.`);
+    }
+}
+
 
         // Function to upgrade mining rate
         function upgradeMining(cost, increase) {
