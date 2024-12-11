@@ -179,9 +179,28 @@
                 <i class="fas fa-wallet"></i>
                 <span>PRESALE</span>
             </a>
-        </nav>
-
+        <a href="mining.html" class="nav-item">
+    <i class="fas fa-coins"></i>
+    <span>MINING</span>
+</a>
+</nav>
     <script src="material/js/js.js"></script>
     <script src="material/js/main.js"></script>
+<script>
+    // Load balance from localStorage or initialize it
+    const balanceElement = document.getElementById("balance");
+    const storedBalance = localStorage.getItem("balance");
+    const balance = storedBalance ? parseInt(storedBalance, 10) : 0;
+
+    // Display the balance
+    balanceElement.textContent = balance;
+
+    // Function to update balance
+    function completeTask(points, redirectUrl) {
+        const newBalance = balance + points;
+        localStorage.setItem("balance", newBalance); // Save new balance to localStorage
+        window.location.href = redirectUrl; // Redirect to the task URL
+    }
+</script>
 </body>
 </html>
